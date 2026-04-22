@@ -1,11 +1,10 @@
-
 BotShield — AI-Powered Bot Detection for UIDAI
 OVERVIEW:-
 BotShield is an AI/ML based bot detection system built for UIDAI's Aadhaar portals. It replaces the traditional CAPTCHA method with a seamless, invisible detection system that identifies bots based on user behavior and environment data — without interrupting the user experience.
 Problem Statement
 CAPTCHAs create friction for real users and are increasingly being bypassed by bots. UIDAI's Aadhaar portals needed a smarter, privacy-friendly solution that could detect bots accurately while keeping the experience smooth for genuine users and protecting the system from DoS attacks.
-Tech Stack
 
+TECH STACK:-
 Python — backend and ML model
 JavaScript — frontend data collection
 Scikit-learn — model training and evaluation
