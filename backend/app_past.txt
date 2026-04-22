@@ -1,0 +1,54 @@
+@app.post("/predict")
+def predict(data: dict):
+
+    # Transform incoming nested structure into flat model structure
+    features = {
+        "env.screenWidth": data["env"]["screenWidth"],
+        "env.screenHeight": data["env"]["screenHeight"],
+        "env.hardwareConcurrency": data["env"]["hardwareConcurrency"],
+
+        "metrics.mouseMoves": data["metrics"]["mouseMoves"],
+        "metrics.scrollEvents": data["metrics"]["scrollEvents"],
+        "metrics.keyboardEvents": data["metrics"]["keyboardEvents"],
+        "metrics.clicks": data["metrics"]["clicks"],
+        "metrics.timeOnPage": data["metrics"]["timeOnPage"],
+        "metrics.idleTime": data["metrics"]["idleTime"],
+        "metrics.focusChanges": data["metrics"]["focusChanges"],
+        "metrics.typingSpeedVariance": data["metrics"]["typingSpeedVariance"],
+        "metrics.avgMouseSpeed": data["metrics"]["avgMouseSpeed"],
+        "metrics.maxMouseSpeed": data["metrics"]["maxMouseSpeed"],
+        "metrics.mouseJitter": data["metrics"]["mouseJitter"],
+        "metrics.directionChanges": data["metrics"]["directionChanges"],
+        "metrics.straightness": data["metrics"]["straightness"],
+        "metrics.pathVariance": data["metrics"]["pathVariance"],
+        "metrics.avgKeyInterval": data["metrics"]["avgKeyInterval"],
+        "metrics.burstTypingRatio": data["metrics"]["burstTypingRatio"],
+        "metrics.pauseVariance": data["metrics"]["pauseVariance"],
+        "metrics.scrollVelocity": data["metrics"]["scrollVelocity"],
+        "metrics.scrollAcceleration": data["metrics"]["scrollAcceleration"],
+        "metrics.scrollJitter": data["metrics"]["scrollJitter"],
+    }
+
+    X = pd.DataFrame([features])
+    proba = model.predict_proba(X)[0]
+
+    human_conf = float(round(proba[0], 3))
+    bot_conf   = float(round(proba[1], 3))
+    
+
+    if human_conf >= 0.7:
+        verdict = "HUMAN"
+        action = "allow"
+    elif bot_conf >= 0.7:
+        verdict = "BOT"
+        action = "block"
+    else:
+        verdict = "SUSPECT"
+        action = "ask_minimal_interaction"
+
+    return {
+        "verdict": verdict,
+        "human_confidence": human_conf,
+        "bot_confidence": bot_conf,
+        "action": action
+    }
