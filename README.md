@@ -20,8 +20,7 @@ Model Training — trained a flexible ML classifier to distinguish human users f
 Bot Detection API — built a backend API to receive frontend signals and return a real-time human/bot decision
 Security & Privacy — designed the entire pipeline with minimal data collection and no storage of personal information
 
-Results
-
+RESULTS:-
 Successfully replaced CAPTCHA with an invisible and seamless bot detection flow
 ML model accurately classifies bots based on behavioral signals
 System protects Aadhaar portals from DoS attacks without affecting real user experience
