@@ -12,8 +12,7 @@ Flask / FastAPI — backend API
 Pandas & NumPy — data processing
 HTML/CSS — frontend components
 
-Approach
-
+APPROACH:-
 Frontend Data Collection — captured minimal user interaction signals like mouse movement, keypress patterns, scroll behavior and device environment data silently using JavaScript
 Data Preprocessing — cleaned and structured the collected behavioral data for model input
 Model Training — trained a flexible ML classifier to distinguish human users from bots based on behavioral features
